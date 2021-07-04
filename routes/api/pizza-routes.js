@@ -11,7 +11,7 @@ const {
 
 // set up GET all and POST at /api/pizzas
 router
-    .router('/')
+    .route('/')
     .get(getAllPizza)
     .post(createPizza);
 
@@ -19,7 +19,7 @@ router
 
 // Set up GET one, PUT, and DELETE at /api/pizzas/:_id
 router 
-    .router('/:id')
+    .route('/:id')
     .get(getPizzaById)
     .put(updatePizza)
     .delete(deletePizza);

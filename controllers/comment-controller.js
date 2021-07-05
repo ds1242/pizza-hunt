@@ -60,7 +60,7 @@ const commentController = {
 
     },
     removeReply({ params }, res) {
-        Comment.findOneAndDelete(
+        Comment.findOneAndUpdate(
             { _id: params.commentId },
             {$pull: { replies: {replyId: params.replyId } } },
             { new: true } 

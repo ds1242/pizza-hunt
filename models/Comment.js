@@ -3,7 +3,7 @@ const dateFormat = require('../utils/dateFormat');
 
 const ReplySchema = new Schema({
     replyId: {
-        type: Schema.Types.ObjectId(),
+        type: Schema.Types.ObjectId,
         default: () => new Types.ObjectId()
     },
     replyBody: {
@@ -42,7 +42,8 @@ const CommentSchema = new Schema({
     toJSON: {
         virtuals: true,
         getters: true
-    }
+    },
+    id: false
 });
 
 CommentSchema.virtual('replyCount').get(function() {

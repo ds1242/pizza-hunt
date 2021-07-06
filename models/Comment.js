@@ -27,27 +27,31 @@ const ReplySchema = new Schema({
     }
 });
 
-const CommentSchema = new Schema({
-    writtenBy: {
-        type: String
+const CommentSchema = new Schema(
+    {
+        writtenBy: {
+            type: String,
+            required: true
+        },
+        commentBody: {
+            type: String,
+            required: true
+        },
+        createAt: {
+            type: Date,
+            default: Date.now,
+            get: createdAtVal => dateFormat(createdAtVal)
+        },
+        replies: [ReplySchema]
     },
-    commentBody: {
-        type: String
-    },
-    createAt: {
-        type: Date,
-        default: Date.now,
-        get: createdAtVal => dateFormat(createdAtVal)
-    },
-    replies: [ReplySchema]
-},
-{
+    {
     toJSON: {
         virtuals: true,
         getters: true
     },
     id: false
-});
+    }
+);
 
 CommentSchema.virtual('replyCount').get(function() {
     return this.replies.length;
